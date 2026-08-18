@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <base target="_top" />
+    <meta charset="UTF-8" />
+    <title>Xuân Lộc — 3D Artist | Blender · Maya · ZBrush</title>
+    <meta
+      name="description"
+      content="Portfolio của Xuân Lộc — 3D Artist chuyên Character Modeling, Hard Surface, Digital Sculpting và Look Development với Blender, Maya, ZBrush."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Xuân Lộc — 3D Artist Portfolio" />
+    <meta
+      property="og:description"
+      content="Character Modeling · Hard Surface · Digital Sculpting · Look Development"
+    />
+    <meta
+      property="og:image"
+      content="https://hoxuanloc311097.github.io/website-xuanloc/assets/hero-3d.webp"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23001D39'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%2342A5F5'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              das: {
+                black: "#101010",
+                paper: "#f1f0eb",
+                sky: "#42A5F5",
+                cyan: "#018BD8",
+                ocean: "#0072BC",
+                deep: "#0A4174",
+                navy: "#001D39",
+                teal: "#4E8EA2",
+                mist: "#7BBDE8",
+                ice: "#BDD8E9",
+                blue: "#3038ff",
+                coral: "#ff654d"
+              }
+            },
+            fontFamily: {
+              sans: ["Haffer", "Arial", "Helvetica", "sans-serif"]
+            }
+          }
+        }
+      };
+    </script>
+
+    <style>
+      @font-face {
+        font-family: "Haffer";
+        src: url("https://cdn.prod.website-files.com/69e049463a8841e91cf7b744/69e049463a8841e91cf7b793_Haffer-SemiBold.woff2") format("woff2");
+        font-display: swap;
+        font-weight: 400 800;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html { background: #101010; }
+      body { margin: 0; overflow-x: hidden; }
+      ::selection { color: #001D39; background: #7BBDE8; }
+      img { -webkit-user-drag: none; }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(2.5rem);
+        transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+      }
+      .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+      .marquee-track {
+        width: max-content;
+        animation: marquee 24s linear infinite;
+      }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+
+      .grain::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: .1;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+
+  <body class="bg-das-paper font-sans text-das-black antialiased">
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-black/20 bg-das-paper/90 backdrop-blur-md">
+      <div class="flex h-[72px] items-center justify-between px-4 sm:px-6 lg:px-10">
+        <a href="#top" aria-label="Xuân Lộc - Trang chủ" class="text-2xl font-bold tracking-[-0.07em] sm:text-3xl">
+          XUANLOC<span class="text-das-ocean">.</span>
+        </a>
+
+        <div class="hidden items-center gap-8 text-sm uppercase tracking-wide md:flex">
+          <a href="#gioi-thieu" class="transition-opacity hover:opacity-50">Giới thiệu</a>
+          <a href="#chuong-trinh" class="transition-opacity hover:opacity-50">Dự án 3D</a>
+          <a href="#hoc-vien" class="transition-opacity hover:opacity-50">Quy trình</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a
+            href="#lien-he"
+            class="hidden rounded-full bg-das-black px-5 py-3 text-sm text-white transition hover:bg-das-blue sm:block"
+          >
+            Liên hệ ↘
+          </a>
+          <button
+            id="menuButton"
+            type="button"
+            aria-label="Mở menu"
+            aria-expanded="false"
+            class="grid h-11 w-11 place-items-center rounded-full border border-black transition hover:bg-das-mist"
+          >
+            <span class="text-xl leading-none">☰</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div id="menuPanel" class="fixed inset-0 z-[60] hidden bg-das-black text-white">
+      <div class="flex h-full flex-col p-5 sm:p-8 lg:p-10">
+        <div class="flex items-center justify-between">
+          <span class="text-3xl font-bold tracking-[-0.07em]">XUANLOC<span class="text-das-sky">.</span></span>
+          <button id="menuClose" type="button" aria-label="Đóng menu" class="grid h-12 w-12 place-items-center rounded-full border border-white/50 text-2xl hover:bg-white hover:text-black">×</button>
+        </div>
+        <nav class="my-auto flex flex-col text-[clamp(2.3rem,7vw,6.5rem)] leading-[.95] tracking-[-0.06em]">
+          <a href="#gioi-thieu" class="menu-link border-b border-white/20 py-3 hover:text-das-mist">① Giới thiệu</a>
+          <a href="#chuong-trinh" class="menu-link border-b border-white/20 py-3 hover:text-das-mist">② Dự án 3D</a>
+          <a href="#hoc-vien" class="menu-link border-b border-white/20 py-3 hover:text-das-mist">③ Quy trình</a>
+          <a href="#lien-he" class="menu-link border-b border-white/20 py-3 hover:text-das-mist">④ Liên hệ</a>
+        </nav>
+      </div>
+    </div>
+
+    <main id="top" class="pt-[72px]">
+      <section class="grain relative flex min-h-[calc(100svh-72px)] flex-col overflow-hidden bg-das-sky px-4 pb-5 pt-7 text-das-navy sm:px-6 lg:px-10 lg:pb-8">
+        <div class="relative z-10 flex items-start justify-between gap-8 text-xs uppercase tracking-wider sm:text-sm">
+          <span>Xuân Lộc / 3D Artist</span>
+          <span class="max-w-[19rem] text-right">Modeling · Sculpting · Look Development</span>
+        </div>
+
+        <div class="relative z-10 my-auto py-14">
+          <h1 class="max-w-[96rem] text-[clamp(4.1rem,14.4vw,14rem)] font-bold leading-[.72] tracking-[-0.085em]">
+            3D<br />ARTIST<span class="text-das-deep">—</span><br />WORKS
+          </h1>
+        </div>
+
+        <div class="relative z-10 grid gap-5 border-t border-black pt-4 text-sm sm:grid-cols-2 lg:grid-cols-3">
+          <p class="max-w-sm">Tôi là 3D Artist tập trung vào tạo hình nhân vật, hard-surface và hình ảnh 3D giàu không khí.</p>
+          <p class="hidden max-w-sm lg:block">Blender · Maya · ZBrush · Substance 3D</p>
+          <a href="#chuong-trinh" class="justify-self-start border-b border-black pb-1 sm:justify-self-end">Xem dự án ↓</a>
+        </div>
+      </section>
+
+      <section class="relative min-h-[75svh] overflow-hidden bg-black text-white">
+        <img
+          class="absolute inset-0 h-full w-full object-cover opacity-80"
+          src="assets/hero-3d.webp"
+          alt="Tổng hợp tác phẩm character, hard-surface và look development 3D"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-black/20"></div>
+        <div class="relative flex min-h-[75svh] items-end p-5 sm:p-8 lg:p-10">
+          <h2 class="reveal max-w-6xl text-[clamp(2.7rem,7vw,7rem)] leading-[.9] tracking-[-0.06em]">
+            Biến ý tưởng thành những thế giới, nhân vật và vật thể 3D có sức sống.
+          </h2>
+        </div>
+      </section>
+
+      <section id="gioi-thieu" class="grid border-b border-black bg-das-paper lg:grid-cols-12">
+        <div class="border-b border-black p-5 sm:p-8 lg:col-span-4 lg:border-b-0 lg:border-r lg:p-10">
+          <p class="sticky top-28 text-sm uppercase tracking-wider">① About / 3D Artist</p>
+        </div>
+        <div class="p-5 sm:p-8 lg:col-span-8 lg:p-10">
+          <p class="reveal text-[clamp(2rem,4.6vw,5.2rem)] leading-[1.02] tracking-[-0.055em]">
+            Tôi là Xuân Lộc, một 3D Artist sử dụng Blender, Maya và ZBrush để xây dựng nhân vật, vật thể và không gian — từ blockout ban đầu đến final render hoàn chỉnh.
+          </p>
+        </div>
+      </section>
+
+      <section class="bg-das-black text-white">
+        <div class="grid sm:grid-cols-2 xl:grid-cols-4">
+          <article class="group min-h-[29rem] border-b border-white/20 p-5 sm:border-r sm:p-7 xl:border-b-0 lg:p-8">
+            <div class="flex h-full flex-col">
+              <span class="text-sm text-white/50">01</span>
+              <img class="my-auto h-48 w-full rounded-sm object-cover transition duration-500 group-hover:scale-105" src="assets/character-sculpt.webp" alt="Character modeling và anatomy sculpt" loading="lazy" />
+              <h3 class="text-3xl leading-none tracking-[-0.04em]">Character Modeling</h3>
+            </div>
+          </article>
+          <article class="group min-h-[29rem] border-b border-white/20 p-5 sm:p-7 xl:border-b-0 xl:border-r lg:p-8">
+            <div class="flex h-full flex-col">
+              <span class="text-sm text-white/50">02</span>
+              <img class="my-auto h-48 w-full rounded-sm object-cover transition duration-500 group-hover:scale-105" src="assets/hard-surface.webp" alt="Hard-surface modeling và mechanical design" loading="lazy" />
+              <h3 class="text-3xl leading-none tracking-[-0.04em]">Hard Surface Modeling</h3>
+            </div>
+          </article>
+          <article class="group min-h-[29rem] border-b border-white/20 p-5 sm:border-b-0 sm:border-r sm:p-7 lg:p-8">
+            <div class="flex h-full flex-col">
+              <span class="text-sm text-white/50">03</span>
+              <img class="my-auto h-48 w-full rounded-sm object-cover object-top transition duration-500 group-hover:scale-105" src="assets/character-sculpt.webp" alt="Digital sculpting trong ZBrush" loading="lazy" />
+              <h3 class="text-3xl leading-none tracking-[-0.04em]">Digital Sculpting</h3>
+            </div>
+          </article>
+          <article class="group min-h-[29rem] p-5 sm:p-7 lg:p-8">
+            <div class="flex h-full flex-col">
+              <span class="text-sm text-white/50">04</span>
+              <img class="my-auto h-48 w-full rounded-sm object-cover transition duration-500 group-hover:scale-105" src="assets/environment.webp" alt="Look development và cinematic lighting" loading="lazy" />
+              <h3 class="text-3xl leading-none tracking-[-0.04em]">Look Development</h3>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="grid bg-das-deep text-white lg:grid-cols-2">
+        <div class="min-h-[30rem] overflow-hidden lg:min-h-[48rem]">
+          <img
+            src="assets/workflow-studio.webp"
+            alt="Quy trình làm việc 3D từ wireframe đến material và final render"
+            loading="lazy"
+            class="h-full w-full object-cover transition duration-700 hover:scale-105"
+          />
+        </div>
+        <div class="flex flex-col justify-between border-t border-white/30 p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+          <p class="text-sm uppercase tracking-wider">From blockout to final pixels</p>
+          <h2 class="reveal my-20 text-[clamp(2.8rem,5.5vw,6.4rem)] leading-[.9] tracking-[-0.06em]">
+            → Tôi kết hợp tư duy tạo hình, topology sạch, vật liệu PBR và ánh sáng để tạo ra sản phẩm 3D thuyết phục.
+          </h2>
+          <a href="#chuong-trinh" class="w-fit rounded-full border border-white px-5 py-3 hover:bg-white hover:text-das-deep">Xem selected works ↓</a>
+        </div>
+      </section>
+
+      <section class="grid border-b border-black bg-das-paper lg:grid-cols-2">
+        <div class="border-b border-black p-5 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
+          <p class="reveal text-2xl leading-snug tracking-[-0.025em] sm:text-3xl">
+            Blender giúp tôi phát triển ý tưởng nhanh, dựng hình, procedural modeling, shading và tạo những final render giàu không khí.
+          </p>
+        </div>
+        <div class="p-5 sm:p-8 lg:p-10">
+          <p class="reveal text-2xl leading-snug tracking-[-0.025em] sm:text-3xl">
+            Maya và ZBrush là nền tảng cho topology, hard-surface, anatomy và sculpting chi tiết — luôn được dẫn dắt bởi silhouette và storytelling.
+          </p>
+        </div>
+      </section>
+
+      <section id="chuong-trinh" class="bg-das-paper px-4 py-16 sm:px-6 sm:py-24 lg:px-10 lg:py-32">
+        <div class="mb-12 flex flex-col gap-6 sm:mb-20 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="mb-4 text-sm uppercase tracking-wider">② Selected works</p>
+            <h2 class="reveal max-w-5xl text-[clamp(3rem,7.4vw,8rem)] leading-[.82] tracking-[-0.07em]">Dự án 3D nổi bật</h2>
+          </div>
+          <span class="text-sm">Model · Sculpt · Texture · Render</span>
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-2">
+          <a href="#lien-he" class="group relative min-h-[38rem] overflow-hidden bg-das-navy">
+            <img src="assets/character-sculpt.webp" alt="Dự án fantasy character sculpt" loading="lazy" class="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/10"></div>
+            <div class="relative flex h-full min-h-[38rem] flex-col justify-between p-5 text-white sm:p-8">
+              <div class="flex justify-between text-sm uppercase"><span>01 / Character Art</span><span>↗</span></div>
+              <h3 class="text-[clamp(2.5rem,5vw,5.4rem)] leading-[.9] tracking-[-0.055em]">The Sentinel — Character Sculpt</h3>
+            </div>
+          </a>
+
+          <a href="#lien-he" class="group relative min-h-[38rem] overflow-hidden bg-das-deep">
+            <img src="assets/hard-surface.webp" alt="Dự án hard-surface futuristic vehicle" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/10"></div>
+            <div class="relative flex h-full min-h-[38rem] flex-col justify-between p-5 text-white sm:p-8">
+              <div class="flex justify-between text-sm uppercase"><span>02 / Hard Surface</span><span>↗</span></div>
+              <h3 class="text-[clamp(2.5rem,5vw,5.4rem)] leading-[.9] tracking-[-0.055em]">Nomad X — Vehicle Design</h3>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="hoc-vien" class="overflow-hidden bg-das-black py-16 text-white sm:py-24 lg:py-32">
+        <div class="px-4 sm:px-6 lg:px-10">
+          <div class="grid gap-8 lg:grid-cols-2">
+            <div>
+              <p class="mb-4 text-sm uppercase tracking-wider text-white/60">③ Process &amp; breakdown</p>
+              <h2 class="reveal text-[clamp(3.3rem,8vw,8.5rem)] leading-[.8] tracking-[-0.075em]">Built<br />in 3D.</h2>
+            </div>
+            <div class="flex flex-col justify-end gap-8">
+              <p class="max-w-xl text-xl leading-relaxed text-white/75 sm:text-2xl">Mỗi dự án đi qua research, blockout, high-poly, retopology, UV, texture, look development và lighting. Tôi chú trọng cả hình thức lẫn khả năng sử dụng trong production.</p>
+              <a href="#lien-he" class="w-fit rounded-full border border-white px-5 py-3 hover:bg-white hover:text-black">Trao đổi dự án ↘</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-14 flex gap-3 overflow-x-auto px-4 pb-4 sm:px-6 lg:px-10">
+          <img class="h-[22rem] w-[17rem] shrink-0 object-cover object-top sm:h-[32rem] sm:w-[24rem]" src="assets/character-sculpt.webp" alt="Character sculpt close-up" loading="lazy" />
+          <img class="h-[22rem] w-[17rem] shrink-0 object-cover sm:h-[32rem] sm:w-[24rem]" src="assets/hard-surface.webp" alt="Hard-surface vehicle modeling" loading="lazy" />
+          <img class="h-[22rem] w-[17rem] shrink-0 object-cover sm:h-[32rem] sm:w-[24rem]" src="assets/environment.webp" alt="Sci-fi environment lighting" loading="lazy" />
+          <img class="h-[22rem] w-[17rem] shrink-0 object-cover sm:h-[32rem] sm:w-[24rem]" src="assets/workflow-studio.webp" alt="3D workflow and material studies" loading="lazy" />
+          <img class="h-[22rem] w-[17rem] shrink-0 object-cover object-left sm:h-[32rem] sm:w-[24rem]" src="assets/hero-3d.webp" alt="3D modeling and sculpting breakdown" loading="lazy" />
+          <img class="h-[22rem] w-[17rem] shrink-0 object-cover object-right sm:h-[32rem] sm:w-[24rem]" src="assets/hero-3d.webp" alt="3D final render presentation" loading="lazy" />
+        </div>
+      </section>
+
+      <section class="overflow-hidden border-y border-das-navy bg-das-mist py-4 text-das-navy">
+        <div class="marquee-track flex text-[clamp(3rem,8vw,8rem)] leading-none tracking-[-0.06em]">
+          <span class="pr-10">BLENDER · MAYA · ZBRUSH · MODELING · SCULPTING · LOOKDEV — </span>
+          <span class="pr-10" aria-hidden="true">BLENDER · MAYA · ZBRUSH · MODELING · SCULPTING · LOOKDEV — </span>
+        </div>
+      </section>
+
+      <section class="relative min-h-[85svh] overflow-hidden bg-das-navy p-5 sm:p-8 lg:p-10">
+        <div class="absolute inset-0 grid grid-cols-2 opacity-85 sm:grid-cols-4">
+          <img class="h-full w-full object-cover object-top" src="assets/character-sculpt.webp" alt="Character art" loading="lazy" />
+          <img class="h-full w-full object-cover" src="assets/hard-surface.webp" alt="Hard-surface art" loading="lazy" />
+          <img class="hidden h-full w-full object-cover sm:block" src="assets/environment.webp" alt="Environment art" loading="lazy" />
+          <img class="hidden h-full w-full object-cover sm:block" src="assets/workflow-studio.webp" alt="3D production workflow" loading="lazy" />
+        </div>
+        <div class="absolute inset-0 bg-black/45"></div>
+        <div class="relative flex min-h-[calc(85svh-5rem)] flex-col items-center justify-center text-center text-white">
+          <h2 class="reveal max-w-6xl text-[clamp(3rem,8vw,8.5rem)] leading-[.82] tracking-[-0.075em]">Bạn có một ý tưởng cần được dựng thành 3D?</h2>
+          <a href="mailto:hoxuanloc@ngocdung.com" class="mt-10 rounded-full bg-das-ice px-7 py-4 text-das-navy transition hover:scale-105 hover:bg-das-sky">Bắt đầu hợp tác ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer id="lien-he" class="bg-das-black px-4 py-12 text-white sm:px-6 sm:py-16 lg:px-10">
+      <div class="grid gap-14 lg:grid-cols-12">
+        <div class="lg:col-span-7">
+          <p class="text-sm uppercase tracking-wider text-white/50">Xuân Lộc / 3D Artist</p>
+          <h2 class="mt-5 text-[clamp(3.4rem,8vw,9rem)] leading-[.78] tracking-[-0.08em]">Let’s build<br />something<br /><span class="text-das-sky">remarkable.</span></h2>
+        </div>
+        <div class="grid gap-10 sm:grid-cols-2 lg:col-span-5">
+          <div>
+            <h3 class="mb-5 text-sm uppercase tracking-wider text-white/50">Khám phá</h3>
+            <div class="flex flex-col gap-3 text-xl">
+              <a class="hover:text-das-mist" href="#chuong-trinh">Selected Works ↓</a>
+              <a class="hover:text-das-mist" href="#hoc-vien">Process &amp; Breakdown ↓</a>
+              <a class="hover:text-das-mist" href="#gioi-thieu">About Me ↑</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="mb-5 text-sm uppercase tracking-wider text-white/50">Liên hệ</h3>
+            <div class="flex flex-col gap-3 text-xl">
+              <a class="hover:text-das-mist" href="mailto:hoxuanloc@ngocdung.com">hoxuanloc@ngocdung.com</a>
+              <span class="text-white/60">Blender · Maya · ZBrush</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-20 flex flex-col gap-4 border-t border-white/25 pt-5 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <span>© <span id="year"></span> Xuân Lộc — 3D Artist</span>
+        <button id="backTop" type="button" class="w-fit hover:text-white">Về đầu trang ↑</button>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var menuPanel = document.getElementById("menuPanel");
+        var menuButton = document.getElementById("menuButton");
+        var menuClose = document.getElementById("menuClose");
+
+        function setMenu(open) {
+          menuPanel.classList.toggle("hidden", !open);
+          menuButton.setAttribute("aria-expanded", String(open));
+          document.body.style.overflow = open ? "hidden" : "";
+        }
+
+        menuButton.addEventListener("click", function () { setMenu(true); });
+        menuClose.addEventListener("click", function () { setMenu(false); });
+        document.querySelectorAll(".menu-link").forEach(function (link) {
+          link.addEventListener("click", function () { setMenu(false); });
+        });
+
+        document.getElementById("backTop").addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(".reveal").forEach(function (element) {
+          revealObserver.observe(element);
+        });
+
+      })();
+    </script>
+  </body>
+</html>
